@@ -70,7 +70,6 @@ int main(int argc, char* argv[]) {
         default:
             return 0;
         }
-        std::cout << "### Day " << i + 1 << " ###" << std::endl;
 
         printPart(1, getDurationAndResults([&]() { return day->part1(); }));
         printPart(2, getDurationAndResults([&]() { return day->part2(); }));

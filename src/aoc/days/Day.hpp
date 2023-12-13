@@ -18,6 +18,9 @@ namespace aoc {
 
 class Day {
 public:
+    Day(int num) { 
+        std::cout << "### Day " << num << " ###" << std::endl;
+    }
     virtual ~Day() = default;
 
     virtual long long part1() = 0;

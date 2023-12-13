@@ -3,7 +3,7 @@
 
 namespace aoc {
 
-Day3::Day3(const std::string& input) {
+Day3::Day3(const std::string& input) : Day(3) {
     auto raw = InputUtils::readFile(input);
 
     TIMER_START;

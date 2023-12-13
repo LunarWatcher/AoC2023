@@ -7,7 +7,7 @@
 
 namespace aoc {
 
-Day2::Day2(const std::string& file) {
+Day2::Day2(const std::string& file) : Day(2) {
 
     auto raw = InputUtils::readFile(file);
 
