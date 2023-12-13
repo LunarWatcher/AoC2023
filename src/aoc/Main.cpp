@@ -55,7 +55,6 @@ int main(int argc, char* argv[]) {
     }
 
     for (int i = min; i < max; ++i) {
-        std::cout << "### Day " << i + 1 << " ###" << std::endl;
         std::shared_ptr<aoc::Day> day;
 
         switch (i + 1) {
@@ -71,6 +70,7 @@ int main(int argc, char* argv[]) {
         default:
             return 0;
         }
+        std::cout << "### Day " << i + 1 << " ###" << std::endl;
 
         printPart(1, getDurationAndResults([&]() { return day->part1(); }));
         printPart(2, getDurationAndResults([&]() { return day->part2(); }));
