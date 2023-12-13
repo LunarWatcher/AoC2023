@@ -11,7 +11,8 @@ Day2::Day2(const std::string& file) {
 
     auto raw = InputUtils::readFile(file);
 
-    auto start = std::chrono::high_resolution_clock::now();
+    TIMER_START;
+
     for (auto& line : raw) {
         std::stringstream ss(line);
         ss.seekg(5);
@@ -54,11 +55,7 @@ Day2::Day2(const std::string& file) {
 
         games.push_back(game);
     }
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration<double, std::milli>(
-            end - start
-        ).count();
-    std::cout << "Part 2 parsed in " << duration << "ms" << std::endl;
+    TIMER_STOP(2);
 }
 
 long long Day2::part1() {

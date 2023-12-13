@@ -2,6 +2,7 @@ add_executable(tests src/TestRunner.cpp
     # Tests {{{
     src/Day1.cpp
     src/Day2.cpp
+    src/Day3.cpp
     # }}}
 )
 
