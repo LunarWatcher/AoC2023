@@ -5,6 +5,7 @@
 #include <utility>
 #include <fmt/format.h>
 
+#include "aoc/days/Day4.hpp"
 #include "days/Day.hpp"
 #include "aoc/days/Day1.hpp"
 #include "aoc/days/Day2.hpp"
@@ -66,6 +67,9 @@ int main(int argc, char* argv[]) {
             break;
         case 3:
             day = std::make_shared<aoc::Day3>("inputs/day3.txt");
+            break;
+        case 4:
+            day = std::make_shared<aoc::Day4>("inputs/day4.txt");
             break;
         default:
             return 0;
