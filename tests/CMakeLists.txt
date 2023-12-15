@@ -6,6 +6,7 @@ add_executable(tests src/TestRunner.cpp
     src/Day4.cpp
     src/Day5.cpp
     src/Day7.cpp
+    src/Day10.cpp
     # }}}
 )
 

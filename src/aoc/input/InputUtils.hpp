@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <map>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
@@ -36,6 +37,23 @@ inline std::vector<long long> ssToLongVector(std::stringstream& ss) {
     std::vector<long long> in;
     ssToLongVector(ss, in);
     return in;
+}
+
+template <typename T>
+inline std::vector<std::vector<T>> fileToMap(const std::string& path, const std::map<char, T>& typeConversionMap) {
+    auto raw = readFile(path);
+    
+    std::vector<std::vector<T>> out;
+
+    for (auto& line : raw) {
+        std::vector<T> lineOut;
+        for (auto& ch : line) {
+            lineOut.push_back(typeConversionMap.at(ch));
+        }
+        out.push_back(lineOut);
+    }
+
+    return out;
 }
 
 }

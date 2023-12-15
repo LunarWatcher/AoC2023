@@ -14,6 +14,7 @@
 #include "aoc/days/Day7.hpp"
 #include "aoc/days/Day8.hpp"
 #include "aoc/days/Day9.hpp"
+#include "aoc/days/Day10.hpp"
 #include "days/Day.hpp"
 
 std::pair<long long, double> getDurationAndResults(std::function<long long()> func) {
@@ -91,6 +92,9 @@ int main(int argc, char* argv[]) {
             break;
         case 9:
             day = std::make_shared<aoc::Day9>("inputs/day9.txt");
+            break;
+        case 10:
+            day = std::make_shared<aoc::Day10>("inputs/day10.txt");
             break;
         default:
             return 0;
