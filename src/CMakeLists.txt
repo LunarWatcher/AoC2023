@@ -6,7 +6,7 @@ set (SOURCE_FILES
     aoc/days/Day5.cpp
     aoc/days/Day6.cpp
     aoc/days/Day7.cpp
-    #aoc/days/Day8.cpp
+    aoc/days/Day8.cpp
     #aoc/days/Day9.cpp
     #aoc/days/Day10.cpp
     #aoc/days/Day11.cpp

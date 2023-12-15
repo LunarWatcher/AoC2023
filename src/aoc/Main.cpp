@@ -12,6 +12,7 @@
 #include "aoc/days/Day5.hpp"
 #include "aoc/days/Day6.hpp"
 #include "aoc/days/Day7.hpp"
+#include "aoc/days/Day8.hpp"
 #include "days/Day.hpp"
 
 std::pair<long long, double> getDurationAndResults(std::function<long long()> func) {
@@ -56,6 +57,7 @@ int main(int argc, char* argv[]) {
     int min = 0, max = 25;
     if (argc == 2) {
         min = max = std::stoi(argv[1]) - 1;
+        max += 1;
     }
 
     for (int i = min; i < max; ++i) {
@@ -82,6 +84,9 @@ int main(int argc, char* argv[]) {
             break;
         case 7:
             day = std::make_shared<aoc::Day7>("inputs/day7.txt");
+            break;
+        case 8:
+            day = std::make_shared<aoc::Day8>("inputs/day8.txt");
             break;
         default:
             return 0;
