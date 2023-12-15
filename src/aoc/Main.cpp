@@ -5,11 +5,12 @@
 #include <utility>
 #include <fmt/format.h>
 
-#include "aoc/days/Day4.hpp"
-#include "days/Day.hpp"
 #include "aoc/days/Day1.hpp"
 #include "aoc/days/Day2.hpp"
 #include "aoc/days/Day3.hpp"
+#include "aoc/days/Day4.hpp"
+#include "aoc/days/Day5.hpp"
+#include "days/Day.hpp"
 
 std::pair<long long, double> getDurationAndResults(std::function<long long()> func) {
     auto start = std::chrono::high_resolution_clock::now();
@@ -70,6 +71,9 @@ int main(int argc, char* argv[]) {
             break;
         case 4:
             day = std::make_shared<aoc::Day4>("inputs/day4.txt");
+            break;
+        case 5:
+            day = std::make_shared<aoc::Day5>("inputs/day5.txt");
             break;
         default:
             return 0;

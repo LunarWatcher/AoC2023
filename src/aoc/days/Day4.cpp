@@ -59,6 +59,7 @@ long long Day4::part1() {
     }
     return sum;
 }
+
 long long Day4::part2() {
     std::unordered_map<long long, long long> cardCounts;
     long long sum = cards.size();

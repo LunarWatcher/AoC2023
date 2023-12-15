@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <sstream>
 #include <stdexcept>
 #include <vector>
 #include <string>
@@ -21,6 +22,20 @@ inline std::vector<std::string> readFile(const std::string& path) {
     }
 
     return out;
+}
+
+inline void ssToLongVector(std::stringstream& ss, std::vector<long long>& in) {
+    while (!ss.eof()) {
+        long long val;
+        ss >> val;
+        if (ss.bad()) return;
+        in.push_back(val);
+    }
+}
+inline std::vector<long long> ssToLongVector(std::stringstream& ss) {
+    std::vector<long long> in;
+    ssToLongVector(ss, in);
+    return in;
 }
 
 }
