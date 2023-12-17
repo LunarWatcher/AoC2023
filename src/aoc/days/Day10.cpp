@@ -31,7 +31,9 @@ Day10::Day10(const std::string& input) : Day(10) {
             }
         }
     }
+
 done:;
+    loopMap = std::vector<std::vector<bool>>((size_t) height, std::vector<bool>(width, false));
     TIMER_STOP(10);
 }
 
@@ -91,6 +93,7 @@ long long Day10::part1() {
     while (queue.size()) {
         auto& [curr, accumulatedDist] = queue.front();
         if (!dists.contains(curr) || dists.at(curr) < accumulatedDist) {
+            loopMap.at(curr.second).at(curr.first) = true;
             dists[curr] = accumulatedDist;
         }
 
@@ -99,9 +102,7 @@ long long Day10::part1() {
             if (canTraverse(curr, next)) {
                 if (!dists.contains(next) || dists.at(next) > accumulatedDist + 1) {
                     queue.push({next, accumulatedDist + 1});
-                    //std::cout << "Going from (" << curr.first << ", " << curr.second << ")" 
-                        //<< " to (" << next.first << ", " << next.second << ")"
-                        //<< std::endl;
+
                 }
             }
         }
@@ -118,7 +119,63 @@ long long Day10::part1() {
 }
 
 long long Day10::part2() {
-    return 0;
+    long long area = 0;
+
+    for (size_t y = 0; y < height; ++y) {
+        bool inside = false;
+        std::optional<Tile> expectedEndTile = std::nullopt;
+        for (size_t x = 0; x < width; ++x) {
+            auto isPipe = loopMap.at(y).at(x);
+            if (isPipe) {
+                auto tile = tiles.at(y).at(x);
+
+                if (!expectedEndTile.has_value()) {
+                    switch (tile) {
+                    case Tile::SOURCE:
+                        // Source is never going to trigger this, but it's here anyway.
+                    case Tile::NS_PIPE:
+                        inside = !inside;
+                        break;
+                    case Tile::NE_PIPE:
+                        expectedEndTile = Tile::NW_PIPE;
+                        break;
+                    //case Tile::NW_PIPE:
+                        //expectedEndTile = Tile::SW_PIPE;
+                        //break;
+                    //case Tile::SW_PIPE:
+                        //break;
+                    case Tile::SE_PIPE:
+                        expectedEndTile = Tile::SW_PIPE;
+                        break;
+                    case Tile::GROUND:
+                    case Tile::WE_PIPE:
+                        std::cout << "Bad tile type" << std::endl;
+                        throw std::runtime_error("Bad tile type: " + std::to_string(static_cast<int>(tile)));
+                    case Tile::SW_PIPE:
+                    case Tile::NW_PIPE:
+                        std::cout << "Fucking moron" << std::endl;
+                        throw std::runtime_error("You fucking suck at geometry");
+                    }
+                } else {
+                    if (tile == Tile::WE_PIPE) {
+                        // We're going along, ignore
+                        continue;
+                    } else if (tile == Tile::SOURCE) {
+                        // Another edge-case
+                        continue;
+                    } else {
+                        if (tile != expectedEndTile.value()) {
+                            inside = !inside;
+                        }
+                        expectedEndTile = std::nullopt;
+                    }
+                }
+            } else if (inside) {
+                area += 1;
+            }
+        }
+    }
+    return area;
 }
 
 }

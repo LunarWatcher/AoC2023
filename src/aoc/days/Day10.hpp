@@ -27,6 +27,7 @@ private:
     Vec2i sourceCoords;
     long long width, height;
     std::vector<std::vector<Tile>> tiles;
+    std::vector<std::vector<bool>> loopMap;
     const auto& getTile(const Vec2i& c) { return tiles.at(c.second).at(c.first); }
 
 
