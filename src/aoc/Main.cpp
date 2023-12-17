@@ -1,4 +1,5 @@
 #include <chrono>
+#include <exception>
 #include <functional>
 #include <iostream>
 #include <memory>
@@ -15,6 +16,7 @@
 #include "aoc/days/Day8.hpp"
 #include "aoc/days/Day9.hpp"
 #include "aoc/days/Day10.hpp"
+#include "aoc/days/Day11.hpp"
 #include "days/Day.hpp"
 
 std::pair<long long, double> getDurationAndResults(std::function<long long()> func) {
@@ -56,6 +58,9 @@ void printPart(int partNum, std::pair<long long, double> res) {
 }
 
 int main(int argc, char* argv[]) {
+#ifdef _WIN32
+    try {
+#endif
     int min = 0, max = 25;
     if (argc == 2) {
         min = max = std::stoi(argv[1]) - 1;
@@ -65,36 +70,40 @@ int main(int argc, char* argv[]) {
     for (int i = min; i < max; ++i) {
         std::shared_ptr<aoc::Day> day;
 
+        std::string inputFile = fmt::format("inputs/day{}.txt", i + 1);
         switch (i + 1) {
         case 1:
-            day = std::make_shared<aoc::Day1>("inputs/day1.txt");
+            day = std::make_shared<aoc::Day1>(inputFile);
             break;
         case 2:
-            day = std::make_shared<aoc::Day2>("inputs/day2.txt");
+            day = std::make_shared<aoc::Day2>(inputFile);
             break;
         case 3:
-            day = std::make_shared<aoc::Day3>("inputs/day3.txt");
+            day = std::make_shared<aoc::Day3>(inputFile);
             break;
         case 4:
-            day = std::make_shared<aoc::Day4>("inputs/day4.txt");
+            day = std::make_shared<aoc::Day4>(inputFile);
             break;
         case 5:
-            day = std::make_shared<aoc::Day5>("inputs/day5.txt");
+            day = std::make_shared<aoc::Day5>(inputFile);
             break;
         case 6:
-            day = std::make_shared<aoc::Day6>("inputs/day6.txt");
+            day = std::make_shared<aoc::Day6>(inputFile);
             break;
         case 7:
-            day = std::make_shared<aoc::Day7>("inputs/day7.txt");
+            day = std::make_shared<aoc::Day7>(inputFile);
             break;
         case 8:
-            day = std::make_shared<aoc::Day8>("inputs/day8.txt");
+            day = std::make_shared<aoc::Day8>(inputFile);
             break;
         case 9:
-            day = std::make_shared<aoc::Day9>("inputs/day9.txt");
+            day = std::make_shared<aoc::Day9>(inputFile);
             break;
         case 10:
-            day = std::make_shared<aoc::Day10>("inputs/day10.txt");
+            day = std::make_shared<aoc::Day10>(inputFile);
+            break;
+        case 11:
+            day = std::make_shared<aoc::Day11>(inputFile);
             break;
         default:
             return 0;
@@ -104,4 +113,10 @@ int main(int argc, char* argv[]) {
         printPart(2, getDurationAndResults([&]() { return day->part2(); }));
 
     }
+#ifdef _WIN32
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        throw;
+    }
+#endif
 }
