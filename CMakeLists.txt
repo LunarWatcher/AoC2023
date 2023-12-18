@@ -19,7 +19,7 @@ FetchContent_Declare(stc
 FetchContent_MakeAvailable(stc)
 FetchContent_MakeAvailable(fmt)
 
-if (!WIN32)
+if (NOT WIN32)
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -fsanitize=undefined -O0 -g")
     set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -O3")
 else()
