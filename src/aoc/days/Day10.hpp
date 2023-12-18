@@ -2,6 +2,7 @@
 
 #include "aoc/days/Day.hpp"
 #include <vector>
+#include <optional>
 
 namespace aoc {
 
