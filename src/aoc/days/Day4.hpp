@@ -4,7 +4,7 @@
 #include <set>
 #include <unordered_set>
 #include <vector>
-#include <stringstream>
+#include <sstream>
 
 namespace aoc {
 
