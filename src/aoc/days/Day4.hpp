@@ -4,6 +4,8 @@
 #include <set>
 #include <unordered_set>
 #include <vector>
+#include <stringstream>
+
 namespace aoc {
 
 class Day4 : public Day {
