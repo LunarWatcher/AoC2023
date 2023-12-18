@@ -57,7 +57,7 @@ std::vector<Day12::Screw> Day12::recursiveSubtree(Screw root) {
 
 
     std::vector<Screw> out;
-    for (auto c : root.components) {
+    for (auto& c : root.components) {
         if (c == Component::BROKEN) {
             if (!ng) {
                 ng = true;
@@ -104,9 +104,10 @@ std::vector<Day12::Screw> Day12::recursiveSubtree(Screw root) {
 
 long long Day12::part1() {
     long long sum = 0;
-
+    //size_t i = 0;
     for (auto screw : input) {
         sum += recursiveSubtree(screw).size();
+        //std::cout << ++i << "/1000" << std::endl;
         
     }
 
