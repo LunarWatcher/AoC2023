@@ -1,6 +1,8 @@
 #include "Day12.hpp"
 #include "aoc/days/Day.hpp"
 #include "aoc/input/InputUtils.hpp"
+#include <chrono>
+#include <numeric>
 
 namespace aoc {
 
@@ -12,6 +14,7 @@ Day12::Day12(const std::string& input) : Day(12) {
         std::stringstream ss(line);
         std::vector<Component> components;
         std::vector<long long> groups;
+        long long totalBroken = 0;
 
         char v = 0;
         size_t idx = 0;
@@ -39,11 +42,14 @@ Day12::Day12(const std::string& input) : Day(12) {
         while (!ss.bad() && !ss.eof()) {
             long long num;
             ss >> num >> v;
+            totalBroken += num;
             groups.push_back(num);
         }
 
         this->input.push_back(Screw {
-            components, groups
+            components,
+            groups,
+            totalBroken,
         });
     }
     TIMER_STOP(12);
@@ -55,6 +61,16 @@ std::vector<Day12::Screw> Day12::recursiveSubtree(Screw root) {
     bool ng = false;
     bool validating = true;
 
+    auto currBroken = std::accumulate(
+        root.components.begin(),
+        root.components.end(),
+        0ll,
+        [](auto acc, const auto& s) {
+            //return 0ll;
+            //acc += s;
+            return acc + (s == Component::BROKEN ? 1 : 0);
+        }
+    );
 
     std::vector<Screw> out;
     for (auto& c : root.components) {
@@ -68,17 +84,20 @@ std::vector<Day12::Screw> Day12::recursiveSubtree(Screw root) {
 
         } else if (c == Component::UNKNOWN) {
             validating = false;
-            c = Component::BROKEN;
-            auto a = recursiveSubtree(root);
-            //if (a.size()) {
-                //out.insert(out.end(), a.begin(), a.end());
-            //}
+            if (currBroken < root.totalBroken) {
+                c = Component::BROKEN;
+                
+                auto a = recursiveSubtree(root);
+                if (a.size()) {
+                    out.insert(out.end(), a.begin(), a.end());
+                }
+            }
 
             c = Component::WORKING;
             auto b = recursiveSubtree(root);
-            //if (b.size()) {
-                //out.insert(out.end(), b.begin(), b.end());
-            //}
+            if (b.size()) {
+                out.insert(out.end(), b.begin(), b.end());
+            }
         } else {
             if (ng) {
                 ng = false;
@@ -103,18 +122,22 @@ std::vector<Day12::Screw> Day12::recursiveSubtree(Screw root) {
 }
 
 long long Day12::part1() {
+    return -404;
     long long sum = 0;
-    //size_t i = 0;
+    long long i = 0;
+    auto now = std::chrono::high_resolution_clock::now();
+
     for (auto screw : input) {
         sum += recursiveSubtree(screw).size();
-        //std::cout << ++i << "/1000" << std::endl;
-        
+        auto end = std::chrono::high_resolution_clock::now();
+        std::cout << ++i << "/1000 (" << (std::chrono::duration_cast<std::chrono::milliseconds>(end - now).count()) / i << "ms/spring)" << std::endl;
     }
 
     return sum;
 }
 
 long long Day12::part2() {
+    return -404;
     return 0;
 }
 

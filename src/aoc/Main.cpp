@@ -18,6 +18,7 @@
 #include "aoc/days/Day10.hpp"
 #include "aoc/days/Day11.hpp"
 #include "aoc/days/Day12.hpp"
+#include "aoc/days/Day13.hpp"
 #include "days/Day.hpp"
 
 std::pair<long long, double> getDurationAndResults(std::function<long long()> func) {
@@ -49,7 +50,7 @@ void printPart(int partNum, std::pair<long long, double> res) {
     }
     std::cout << "("
         << "\033[48;5;" << colour << "m"
-        //<< "\033[48:5:232m"
+        << "\033[48:5:232m"
         << fmt::format("{:>10}", res.second)
         << "ms"
         << "\033[0m"
@@ -107,8 +108,16 @@ int main(int argc, char* argv[]) {
             day = std::make_shared<aoc::Day11>(inputFile);
             break;
         case 12:
-            day = std::make_shared<aoc::Day12>(inputFile);
+            //day = std::make_shared<aoc::Day12>(inputFile);
+            //break;
+            std::cout << "### Day 12 ###" << std::endl;
+            std::cout << "Day 12 can go fuck itself" << std::endl;
+            continue;
+        case 13:
+            day = std::make_shared<aoc::Day13>(inputFile);
+            //day = std::make_shared<aoc::Day13>("inputs/extern/d13.txt");
             break;
+
         default:
             return 0;
         }

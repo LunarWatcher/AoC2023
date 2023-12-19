@@ -17,6 +17,7 @@ private:
     struct Screw {
         std::vector<Component> components;
         std::vector<long long> desiredGroups;
+        long long totalBroken;
     };
 
     std::vector<Screw> input;

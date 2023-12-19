@@ -11,7 +11,7 @@ set (SOURCE_FILES
     aoc/days/Day10.cpp
     aoc/days/Day11.cpp
     aoc/days/Day12.cpp
-    #aoc/days/Day13.cpp
+    aoc/days/Day13.cpp
     #aoc/days/Day14.cpp
     #aoc/days/Day15.cpp
     #aoc/days/Day16.cpp
